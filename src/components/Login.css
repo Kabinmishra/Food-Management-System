@@ -1,0 +1,128 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0f172a;
+  padding: 20px;
+}
+ 
+.login-form {
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 400px;
+  color: #e2e8f0;
+}
+ 
+.login-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #f8fafc;
+}
+ 
+.login-form-group {
+  margin-bottom: 1.25rem;
+}
+ 
+.login-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+ 
+.login-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+ 
+.login-input::placeholder {
+  color: #64748b;
+}
+ 
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+ 
+.login-button:hover {
+  background-color: #3182ce;
+}
+ 
+.login-button:disabled {
+  background-color: #718096;
+  cursor: not-allowed;
+}
+ 
+.login-error-message {
+  color: #f87171;
+  background-color: #fecaca;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+}
+ 
+.login-error-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #991b1b;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+ 
+.login-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  margin-right: 8px;
+  animation: login-spin 1s linear infinite;
+  vertical-align: middle;
+}
+ 
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+ 
+.login-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #cbd5e1;
+}
+ 
+.login-footer a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+ 
+.login-footer a:hover {
+  text-decoration: underline;
+}
