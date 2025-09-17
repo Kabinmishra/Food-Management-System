@@ -12,9 +12,8 @@ const OrderHistory = () => {
       try {
         const response = await instance.get("http://172.17.17.63:8080/api/order/myOrder"); 
         console.log("Full response:", response.data);
-        
+
         const data = response.data.data || [];
-        
         setOrders(data);
         setLoading(false);
       } catch (err) {
@@ -30,23 +29,20 @@ const OrderHistory = () => {
   }, []);
 
   const formatDate = (dateString) => {
-    if (!dateString || dateString === "N/A") return "Date not available";
-    
+    if (!dateString) return "Date not available";
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
       });
     } catch (error) {
       return "Invalid date";
     }
   };
-
-  const total = (item) => (item.unitPrice * item.quantity).toFixed(2);
 
   if (loading) return <div className="loading-container"><div className="loading-spinner"></div><p>Loading order history...</p></div>;
   if (error) return <p className="error">Error: {error}</p>;
@@ -77,34 +73,41 @@ const OrderHistory = () => {
             <div className="summary-item">
               <span className="summary-label">Total Spent</span>
               <span className="summary-value">
-                Rs{orders.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0).toFixed(2)}
+                Rs
+                {orders
+                  .reduce((sum, order) => sum + order.totalPrice, 0)
+                  .toFixed(2)}
               </span>
             </div>
           </div>
 
           <div className="order-list">
-            {orders.map((item, index) => (
-              <div key={item.id || item._id || index} className="order-item">
+            {orders.map((order) => (
+              <div key={order.id} className="order-item">
                 <div className="order-item-header">
-                  <h3>{item.foodName}</h3>
-                  <span className="order-status">Delivered</span>
+                  <h3>Order #{order.id}</h3>
+                  <span className="order-status">{order.status}</span>
                 </div>
+
                 <div className="order-details">
-                  <div className="detail-row">
-                    <span>Unit Price</span>
-                    <span>Rs{item.unitPrice}</span>
-                  </div>
-                  <div className="detail-row">
-                    <span>Quantity</span>
-                    <span>{item.quantity}</span>
-                  </div>
+                  {order.items.map((item, idx) => (
+                    <div key={idx} className="detail-row">
+                      <span>
+                        {item.foodName} (x{item.quantity})
+                      </span>
+                      <span>Rs{item.lineTotal.toFixed(2)}</span>
+                    </div>
+                  ))}
                   <div className="detail-row total-row">
                     <span>Total</span>
-                    <span>Rs{total(item)}</span>
+                    <span>Rs{order.totalPrice.toFixed(2)}</span>
                   </div>
                 </div>
+
                 <div className="order-footer">
-                  <span className="order-date">{formatDate(item.orderDate)}</span>
+                  <span className="order-date">
+                    {formatDate(order.createdAt)}
+                  </span>
                   <button className="reorder-btn">Reorder</button>
                 </div>
               </div>
