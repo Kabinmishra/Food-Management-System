@@ -29,7 +29,6 @@
   font-weight: 300;
 }
 
-/* Controls Section */
 .food-list-controls {
   background: white;
   padding: 25px;
@@ -108,7 +107,7 @@
   box-shadow: 0 2px 8px rgba(106, 17, 203, 0.15);
 }
 
-/* Results Info */
+
 .results-info {
   margin-bottom: 20px;
   text-align: center;
@@ -116,7 +115,7 @@
   font-style: italic;
 }
 
-/* Food Grid */
+
 .food-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -190,7 +189,6 @@
   box-shadow: 0 4px 12px rgba(106, 17, 203, 0.25);
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
   padding: 50px 20px;
